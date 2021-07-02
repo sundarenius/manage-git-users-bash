@@ -4,21 +4,45 @@ function __START__ {
   if [[ $1 == "sundarenius" ]];
     then
         echo $1;
-        git config --global user.name "Håkan Sundström"
-        git config --global user.username "sundarenius"
-        git config --global user.email "sundarenius@gmail.com"
         sshUrlSplit=(${2//:/ })
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
+        # cd in to directory
+        split=(${2//// })
+        z=${split[1]}
+        folderName=(${z//.git/ })
+        echo $folderName
+        path=$(cd "$(dirname "$folderName")"; pwd -P)/$(basename "$folderName")
+        cd $path
+        git config user.name "Håkan Sundström"
+        git config user.username "sundarenius"
+        git config user.email "sundarenius@gmail.com"
+        if [[ $3 == "n" ]];
+          then
+            echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
+            $SHELL
+        fi
     elif [[ $1 = 'hakkespro' ]];
       then
         echo $1;
-        git config --global user.name "Håkan Sundström"
-        git config --global user.username "hakkespro"
-        git config --global user.email "hakan.sundstrom@bambora.com"
         sshUrlSplit=(${2//:/ })
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
+        # cd in to directory
+        split=(${2//// })
+        z=${split[1]}
+        folderName=(${z//.git/ })
+        echo $folderName
+        path=$(cd "$(dirname "$folderName")"; pwd -P)/$(basename "$folderName")
+        cd $path
+        git config user.name "Håkan Sundström"
+        git config user.username "hakkespro"
+        git config user.email "hakan.sundstrom@bambora.com"
+        if [[ $3 == "n" ]];
+          then
+            echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
+            $SHELL
+        fi
     else
       echo Provide me a correct username
       echo cat this path to watch the code and usernames:
@@ -28,4 +52,4 @@ function __START__ {
     fi
 }
 
-__START__ $1 $2;
+__START__ $1 $2 $3;
