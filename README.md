@@ -1,9 +1,9 @@
 # Manage multiple GitHub accounts on same machine
 
-Add gh file to `/usr/local/bin` folder on unix like systems, and corresponding path on windows.
+Add ghc file to `/usr/local/bin` folder on unix like systems, and corresponding path on windows.
 
 Run this command for linux/mac to copy ca file to usr/local/bin, that will make this file globally available:
-`cp gh /usr/local/bin`
+`cp ghc /usr/local/bin`
 
 Contains bash functions to prefix a `git clone` ssh url with provided user (host) that mathes what is set in `~/.ssh/config`
 

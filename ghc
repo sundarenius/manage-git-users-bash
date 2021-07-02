@@ -52,11 +52,4 @@ function __CLONE__ {
     fi
 }
 
-function __START__ {
-  if [[ $1 == "clone" ]];
-  then
-    __CLONE__ $2 $3 $4;
-  fi
-}
-
-__START__ $1 $2 $3 $4;
+__CLONE__ $1 $2 $3;
