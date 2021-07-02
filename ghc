@@ -1,5 +1,23 @@
 #!/bin/bash
 
+function __NAVIGATE__ {
+  # cd in to directory
+  split=(${1//// })
+  z=${split[1]}
+  folderName=(${z//.git/ })
+  echo $folderName
+  path=$(cd "$(dirname "$folderName")"; pwd -P)/$(basename "$folderName")
+  cd $path
+  git config user.name "Håkan Sundström"
+  git config user.username "sundarenius"
+  git config user.email "sundarenius@gmail.com"
+  if [[ $2 ]];
+    then
+      echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
+      $SHELL
+  fi
+}
+
 function __CLONE__ {
   if [[ $1 == "sundarenius" ]];
     then
@@ -7,21 +25,7 @@ function __CLONE__ {
         sshUrlSplit=(${2//:/ })
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
-        # cd in to directory
-        split=(${2//// })
-        z=${split[1]}
-        folderName=(${z//.git/ })
-        echo $folderName
-        path=$(cd "$(dirname "$folderName")"; pwd -P)/$(basename "$folderName")
-        cd $path
-        git config user.name "Håkan Sundström"
-        git config user.username "sundarenius"
-        git config user.email "sundarenius@gmail.com"
-        if [[ $3 ]];
-          then
-            echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
-            $SHELL
-        fi
+        __NAVIGATE__ $2 $3
     elif [[ $1 = 'hakkespro' ]];
       then
         echo $1;
@@ -29,20 +33,7 @@ function __CLONE__ {
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
         # cd in to directory
-        split=(${2//// })
-        z=${split[1]}
-        folderName=(${z//.git/ })
-        echo $folderName
-        path=$(cd "$(dirname "$folderName")"; pwd -P)/$(basename "$folderName")
-        cd $path
-        git config user.name "Håkan Sundström"
-        git config user.username "hakkespro"
-        git config user.email "hakan.sundstrom@bambora.com"
-        if [[ $3 ]];
-          then
-            echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
-            $SHELL
-        fi
+        __NAVIGATE__ $2 $3
     else
       echo Provide me a correct username
       echo cat this path to watch the code and usernames:
