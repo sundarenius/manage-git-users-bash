@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function __START__ {
+function __CLONE__ {
   if [[ $1 == "sundarenius" ]];
     then
         echo $1;
@@ -17,7 +17,7 @@ function __START__ {
         git config user.name "Håkan Sundström"
         git config user.username "sundarenius"
         git config user.email "sundarenius@gmail.com"
-        if [[ $3 == "n" ]];
+        if [[ $3 ]];
           then
             echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
             $SHELL
@@ -38,7 +38,7 @@ function __START__ {
         git config user.name "Håkan Sundström"
         git config user.username "hakkespro"
         git config user.email "hakan.sundstrom@bambora.com"
-        if [[ $3 == "n" ]];
+        if [[ $3 ]];
           then
             echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
             $SHELL
@@ -52,4 +52,11 @@ function __START__ {
     fi
 }
 
-__START__ $1 $2 $3;
+function __START__ {
+  if [[ $1 == "clone" ]];
+  then
+    __CLONE__ $2 $3 $4;
+  fi
+}
+
+__START__ $1 $2 $3 $4;
