@@ -32,7 +32,6 @@ function __CLONE__ {
         sshUrlSplit=(${2//:/ })
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
-        # cd in to directory
         __NAVIGATE__ $2 $3
     else
       echo Provide me a correct username
