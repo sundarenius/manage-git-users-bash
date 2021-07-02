@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function __START__ {
+  if [[ $1 == "sundarenius" ]];
+    then
+        echo $1;
+        git config --global user.name "Håkan Sundström"
+        git config --global user.username "sundarenius"
+        git config --global user.email "sundarenius@gmail.com"
+        sshUrlSplit=(${2//:/ })
+        urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
+        git clone $urlPrefixed
+    elif [[ $1 = 'hakkespro' ]];
+      then
+        echo $1;
+        git config --global user.name "Håkan Sundström"
+        git config --global user.username "hakkespro"
+        git config --global user.email "hakan.sundstrom@bambora.com"
+        sshUrlSplit=(${2//:/ })
+        urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
+        git clone $urlPrefixed
+    else
+      echo Provide me a correct username
+      echo cat this path to watch the code and usernames:
+      echo Do a: \"which "${0##*/}"\" and cat that path
+      echo Example:
+      echo "${0##*/}" [username] [github-ssh-url]
+    fi
+}
+
+__START__ $1 $2;
