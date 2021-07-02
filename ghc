@@ -33,6 +33,11 @@ function __CLONE__ {
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
         __NAVIGATE__ $2 $3
+    elif [[ $1 = 'fork' ]];
+      then
+        echo Forking a repo
+        echo CMD: gh repo fork $2
+        gh repo fork $2
     else
       echo Provide me a correct username
       echo cat this path to watch the code and usernames:
