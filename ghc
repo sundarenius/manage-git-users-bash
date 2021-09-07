@@ -8,9 +8,9 @@ function __NAVIGATE__ {
   echo $folderName
   path=$(cd "$(dirname "$folderName")"; pwd -P)/$(basename "$folderName")
   cd $path
-  git config user.name "Håkan Sundström"
-  git config user.username "sundarenius"
-  git config user.email "sundarenius@gmail.com"
+  # git config user.name "Håkan Sundström"
+  # git config user.username $3
+  # git config user.email $4
   if [[ $2 ]];
     then
       echo -e '\nHit [Ctrl]+[D] to exit this child shell.'
@@ -25,14 +25,18 @@ function __CLONE__ {
         sshUrlSplit=(${2//:/ })
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
-        __NAVIGATE__ $2 $3
+        userName="sundarenius"
+        email="sundarenius@gmail.com"
+        __NAVIGATE__ $2 $3 $userName $email
     elif [[ $1 = 'hakkespro' ]];
       then
         echo $1;
         sshUrlSplit=(${2//:/ })
         urlPrefixed=${sshUrlSplit[0]}-$1:${sshUrlSplit[1]}
         git clone $urlPrefixed
-        __NAVIGATE__ $2 $3
+        userName="hakkespro"
+        email="hakan.sundstrom@bambora.com"
+        __NAVIGATE__ $2 $3 $userName $email
     elif [[ $1 = 'fork' ]];
       then
         echo Forking a repo
