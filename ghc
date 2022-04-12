@@ -55,6 +55,11 @@ function __SET__ {
         git config user.name "Håkan Sundström"
         git config user.username $1
         git config user.email "hakan.sundstrom@bambora.com"
+    elif [[ $1 == "postnord" ]];
+      then
+        git config user.name "Håkan Sundström"
+        git config user.username "hakansundstrom"
+        git config user.email "hakan.sundstrom@postnord.com"
     fi
 }
 
