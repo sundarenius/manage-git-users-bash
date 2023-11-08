@@ -44,6 +44,7 @@ step 5:
 Add new ssh keys 
 $ cd ~/.ssh
 
+$ eval "$(ssh-agent -s)" # om ej ssh-agent connection ej aktiv
 $ ssh-add id_rsa_personal
 $ ssh-add id_rsa_work
 
